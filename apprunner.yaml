@@ -3,7 +3,7 @@ runtime: nodejs12
 build:
   commands:    
     build:
-      - npm install --production                                  
+       npm install                                  
 run:                              
   command: node dynamoAccess.js
   network:
