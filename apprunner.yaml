@@ -1,0 +1,8 @@
+version: 1.0
+runtime: nodejs12
+build:
+  commands:    
+    build:
+      - npm install --production                                  
+run:                              
+  command: node dynamoAccess.js
