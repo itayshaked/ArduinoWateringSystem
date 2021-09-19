@@ -1,21 +1,11 @@
 {
-  "name": "wateringsys",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
-  "type": "module",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
-    "aws-sdk": "^2.980.0",
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
-    "node": "^16.6.1",
-    "node-fetch": "^3.0.0",
-    "nodemon": "^2.0.12",
-    "quick-local-ip": "^1.0.7",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -23,9 +13,6 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "start-server": "node src/dynamoAccess.js",
-    "dev": "nodemon src/dynamoAccess.js",
-    "run-server": "nodemon src/server.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
@@ -47,5 +34,6 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "proxy":"http://localhost:5000"
 }
