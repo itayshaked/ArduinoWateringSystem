@@ -14,13 +14,9 @@ import cors from 'cors'
 const app=express()
 app.use(urlencoded({extended:true}))
 app.use(json())
-<<<<<<< HEAD
 app.use(cors({origin:'10.0.0.17'}))
 const port=5000
-=======
-app.use(cors())
-const port=8080
->>>>>>> master
+
 
 
 app.get('/data',async(req,res)=>{
