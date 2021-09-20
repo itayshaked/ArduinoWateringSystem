@@ -8,7 +8,7 @@ function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("http://localhost:5000/data")
+    fetch("https://ikahukv9da.us-east-2.awsapprunner.com/data")
       .then((res) => res.json())
       .then((data) => setData(data.Item));
   
