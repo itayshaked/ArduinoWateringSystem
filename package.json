@@ -11,9 +11,11 @@
     "node": "^16.6.1",
     "node-fetch": "^3.0.0",
     "nodemon": "^2.0.12",
+    "react": "^17.0.2",
     "web-vitals": "^1.1.2"
   },
   "scripts": {
+    "start": "cd client && npm react-script start",
     "start-server": "node src/dynamoAccess.js",
     "dev": "nodemon src/dynamoAccess.js",
     "run-server": "nodemon src/server.js"
