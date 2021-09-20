@@ -15,8 +15,8 @@ const app=express()
 app.use(urlencoded({extended:true}))
 app.use(json())
 app.use(cors())
-const port=5000
-var sensorsData;
+const port=8080
+
 
 app.get('/data',async(req,res)=>{
     const params={
