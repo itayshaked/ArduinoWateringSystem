@@ -5,6 +5,6 @@ build:
     build:
        npm install                                  
 run:                              
-  command: node dynamoAccess.js
+  command: npm start-server
   network:
     port:5000
