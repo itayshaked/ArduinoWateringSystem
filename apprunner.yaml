@@ -5,6 +5,6 @@ build:
     build:
        npm install                                  
 run:                              
-  command: npm start-server
+  command: npm run start-server
   network:
     port:5000
