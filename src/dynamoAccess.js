@@ -14,9 +14,9 @@ import cors from 'cors'
 const app=express()
 app.use(urlencoded({extended:true}))
 app.use(json())
-app.use(cors())
+app.use(cors({origin:'10.0.0.17'}))
 const port=5000
-var sensorsData;
+
 
 app.get('/data',async(req,res)=>{
     const params={
