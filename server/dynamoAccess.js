@@ -1,9 +1,9 @@
 import AWS from 'aws-sdk'
 
 AWS.config.update({
-    "region":AWS_DEFAULT_REGION,
-   "accessKeyId":AWS_ACCESS_KEY_ID,
-    "secretAccessKey":AWS_SECRET_ACCESS_KEY_ID
+    "region":process.env.AWS_DEFAULT_REGION,
+   "accessKeyId":process.env.AWS_ACCESS_KEY_ID,
+    "secretAccessKey":process.env.AWS_SECRET_ACCESS_KEY_ID
 })
 const dynamoCLient=new AWS.DynamoDB.DocumentClient()
 const TABLE_NAME="Watering_System_Data"
