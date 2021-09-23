@@ -8,7 +8,7 @@ function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch("https://ikahukv9da.us-east-2.awsapprunner.com/data")
+    fetch("https://3emvmdwffh.us-east-2.awsapprunner.com/data")
       .then((res) => res.json())
       .then((data) => setData(data.Item));
   
