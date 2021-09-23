@@ -14,7 +14,7 @@ import cors from 'cors'
 const app=express()
 app.use(urlencoded({extended:true}))
 app.use(json())
-app.use(cors({origin:'10.0.0.17'}))
+app.use(cors())
 const port=5000
 
 
@@ -104,5 +104,6 @@ app.post('/sensors',async(req,res)=>{
     res.send("OK")
     res.end()
 })
+console.log("hh")
 app.listen(port)
 
