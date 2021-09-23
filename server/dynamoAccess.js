@@ -1,6 +1,4 @@
 import AWS from 'aws-sdk'
-import dotenv from 'dotenv'
-dotenv.config()
 
 AWS.config.update({
     "region":AWS_DEFAULT_REGION,
@@ -104,6 +102,5 @@ app.post('/sensors',async(req,res)=>{
     res.send("OK")
     res.end()
 })
-console.log("hh")
 app.listen(port)
 
