@@ -14,7 +14,7 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start-server": "node server/dynamoAccess.js",
+    "start": "node server/dynamoAccess.js",
     "dev": "nodemon server/dynamoAccess.js"
     
   },
