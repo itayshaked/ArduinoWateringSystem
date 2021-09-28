@@ -3,9 +3,9 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 AWS.config.update({
-    "region":AWS_DEFAULT_REGION,
-   "accessKeyId":AWS_ACCESS_KEY_ID,
-    "secretAccessKey":AWS_SECRET_ACCESS_KEY_ID
+    "region":process.env.AWS_DEFAULT_REGION,
+   "accessKeyId":process.env.AWS_ACCESS_KEY_ID,
+    "secretAccessKey":process.env.AWS_SECRET_ACCESS_KEY_ID
 })
 const dynamoCLient=new AWS.DynamoDB.DocumentClient()
 const TABLE_NAME="Watering_System_Data"
@@ -104,6 +104,5 @@ app.post('/sensors',async(req,res)=>{
     res.send("OK")
     res.end()
 })
-console.log("hh")
 app.listen(port)
 
