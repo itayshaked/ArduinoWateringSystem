@@ -60,6 +60,7 @@ app.post('/sensors',async(req,res)=>{
             ,
             "timestamp":parseInt(req.body.timestamp)
             ,
+            
             "temp":parseInt(req.body.temp)
             ,
             "UV":parseInt(req.body.UV)
