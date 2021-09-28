@@ -1,11 +1,10 @@
 import AWS from 'aws-sdk'
-import dotenv from 'dotenv'
-dotenv.config()
+
 
 AWS.config.update({
-    "region":process.env.AWS_DEFAULT_REGION,
-   "accessKeyId":process.env.AWS_ACCESS_KEY_ID,
-    "secretAccessKey":process.env.AWS_SECRET_ACCESS_KEY_ID
+    "region":AWS_DEFAULT_REGION,
+   "accessKeyId":AWS_ACCESS_KEY_ID,
+    "secretAccessKey":AWS_SECRET_ACCESS_KEY_ID
 })
 const dynamoCLient=new AWS.DynamoDB.DocumentClient()
 const TABLE_NAME="Watering_System_Data"
@@ -59,6 +58,8 @@ app.post('/sensors',async(req,res)=>{
         Item:{
             "time":parseInt(req.body.time)
             ,
+            "timestamp":parseInt(req.body.timestamp)
+            ,
             "temp":parseInt(req.body.temp)
             ,
             "UV":parseInt(req.body.UV)
@@ -68,7 +69,6 @@ app.post('/sensors',async(req,res)=>{
             "water_sensor":parseInt(req.body.water_sensor)
             ,
             "humid":parseInt(req.body.humid)
-            
             }
     }
     dynamoCLient.put(params,(err,data)=>{
@@ -104,5 +104,6 @@ app.post('/sensors',async(req,res)=>{
     res.send("OK")
     res.end()
 })
+console.log("hh")
 app.listen(port)
 
