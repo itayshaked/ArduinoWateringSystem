@@ -43,29 +43,28 @@
     <li><a href="#usage">Usage</a></li>
     <li><a href="#roadmap">Roadmap</a></li>
     <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
-<img src="images/WateringProjectDiagram.png" >
 
+## About the project
 
+Arduino IoT 33 - Grove shield and sensors based AWS-Cloud connected Automated Watering System with live sensors reading and collection using:
 
-
-
-
-### Built With
 
 * [Node.js]()
 * [React]()
 * [DynamoDB]()
-* [C++]()
+* [Apprunner]()
+* [Amplify]()
+* [Arduino IoT 33]()
+
+## Diagram
+<img src="images/WateringProjectDiagram.png" >
 
 
 
@@ -76,29 +75,37 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
+Server side:
 * npm
   ```sh
-  npm install npm@latest -g
+  npm i node node-fetch cors express aws-sdk dotenv 
   ```
 
 ### Installation
 
 1. Clone the repo
    ```sh
-   git clone https://github.com/github_username/repo_name.git
+   git clone https://github.com/itayshaked/ArduinoWateringSystem.git
    ```
 2. Install NPM packages
    ```sh
-   npm install
-   ```
+   npm i node node-fetch cors express aws-sdk dotenv
+3. Run server
+   ```sh 
+   npm run start
+4. Run client
+    ```sh
+    cd client && npm start
+    ```
+    
+
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Soon will be uploaded.
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
@@ -114,7 +121,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+Contributions are **greatly appreciated**.
 
 1. Fork the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
@@ -124,44 +131,13 @@ Contributions are what make the open source community such an amazing place to l
 
 
 
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE` for more information.
-
-
 
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email
+Itay Shaked - [@LinkedIn](https://www.linkedin.com/in/itayshaked/) - itaysh3r@gmail.com or eitimi@gmail.com
 
-Project Link: [https://github.com/github_username/repo_name](https://github.com/github_username/repo_name)
-
-
-
-<!-- ACKNOWLEDGEMENTS -->
-## Acknowledgements
-
-* []()
-* []()
-* []()
+Project Link: [https://github.com/itayshaked/ArduinoWateringSystem](https://github.com/itayshaked/ArduinoWateringSystem)
 
 
 
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/github_username
