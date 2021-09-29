@@ -1,0 +1,143 @@
+
+#define WATER_SENSOR 2
+#include "DHT.h"
+#define DHTTYPE DHT11   // DHT 11
+#define DHTPIN 4  
+DHT dht(DHTPIN, DHTTYPE,6);
+//---------------------------
+//Server-Wifi init
+#include <SPI.h>
+#include <WiFiNINA.h>
+#include <ArduinoHttpClient.h>
+#include "arduino_secrets.h" 
+//-----------------------
+char ssid[] = SECRET_SSID;        // your network SSID (name)
+char pass[] = SECRET_PASS;    // your network password (use for WPA, or use as key for WEP)
+//server to send data
+char serverAddress[]="3emvmdwffh.us-east-2.awsapprunner.com";
+int port=443;
+WiFiSSLClient client;
+
+
+int status = WL_IDLE_STATUS;
+void setup() {
+  Serial.begin(9600);
+  Wire.begin();
+  dht.begin();
+
+   pinMode(WATER_SENSOR, INPUT);//Water sensor init
+
+ 
+  Serial.println("Starting Connection");
+  setWifi();
+  
+  
+}
+
+void loop() {
+  
+  float arr[6];
+  getDataFromSensors(arr);
+  arr[5]=WiFi.getTime();
+  handleClient("time="+String(arr[5])+"&timestamp="+String(arr[5])+"&UV="+String(arr[0])+"&soil_moist="+String(arr[1])+"&temp="+String(arr[2])+"&humid="+String(arr[3])+"&water_sensor="+String(arr[4])); 
+  delay(10000);   
+}
+void handleClient(String postData){
+  if (client.connect(serverAddress, port)) {
+    Serial.println("connected");
+    // Make a HTTP request:
+    client.println("POST /sensors HTTP/1.1");
+    client.println("Host: 3emvmdwffh.us-east-2.awsapprunner.com");
+    client.println("Content-Type: application/x-www-form-urlencoded");
+    client.print("Content-Length: "); 
+    client.println(postData.length()); 
+    client.println(); 
+    client.print(postData);
+    client.println("Connection: close");
+    client.println();
+  }
+  while(client.connected()) {
+    while(client.available()) {
+      char ch = client.read();
+      Serial.write(ch); 
+      } 
+   } 
+     if (!client.connected()) {
+      Serial.println(); 
+      Serial.println("disconnecting.");
+      client.stop();
+      }
+}
+void setWifi(){
+  // check for the WiFi module:
+  if (WiFi.status() == WL_NO_MODULE) {
+    Serial.println("Communication with WiFi module failed!");
+    // don't continue
+    while (true);
+  }
+  // attempt to connect to WiFi network:
+  while (status != WL_CONNECTED) {
+    Serial.println("Attempting to connect to SSID: ");
+    Serial.println(ssid);
+    // Connect to WPA/WPA2 network. Change this line if using open or WEP network:
+    status = WiFi.begin(ssid, pass);
+    // wait 10 seconds for connection:
+    delay(10000);
+  }
+  // you're connected now, so print out the status:
+  printWifiStatus();
+}
+
+ void getDataFromSensors(float* arr){
+   //temperature and humidity read
+   
+    float temp_hum_val[2] = {0};
+    float temp;
+    float soil_moist;
+    float UV;
+    float humid;
+    float water_sensor;
+       
+        humid=dht.readHumidity();
+        temp=dht.readTemperature(false); 
+    
+    //water sensor read
+    water_sensor= digitalRead(WATER_SENSOR);
+    
+    // soil moist read
+    soil_moist=analogRead(A2);
+    
+    
+    //UV read
+    long  sum=0;
+    for(int i=0;i<1024;i++)// accumulate readings for 1024 times
+    {
+        UV=analogRead(A0);
+        sum=UV+sum;
+        delay(2);
+    }
+    float meanVal = sum/1024;  // get mean value
+    //Serial.print(meanVal);
+    UV=meanVal;
+    arr[0]=UV;
+    arr[1]=soil_moist;
+    arr[2]=temp;
+    arr[3]=humid;
+    arr[4]=water_sensor;
+ 
+}
+
+void printWifiStatus() {
+  // print the SSID of the network you're attached to:
+  Serial.print("SSID: ");
+  Serial.println(WiFi.SSID());
+
+  // print your board's IP address:
+  Serial.println(WiFi.localIP());
+
+  // print the received signal strength:
+  long rssi = WiFi.RSSI();
+  Serial.print("signal strength (RSSI):");
+  Serial.print(rssi);
+  Serial.println(" dBm");
+}
