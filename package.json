@@ -8,6 +8,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
+    "memory-cache": "^0.2.0",
     "node": "^16.6.1",
     "node-fetch": "^3.0.0",
     "nodemon": "^2.0.12",
@@ -16,7 +17,6 @@
   "scripts": {
     "start": "node server/dynamoAccess.js",
     "dev": "nodemon server/dynamoAccess.js"
-    
   },
   "eslintConfig": {
     "extends": [
@@ -36,5 +36,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy":"10.0.0.17"
+  "proxy": "10.0.0.17"
 }

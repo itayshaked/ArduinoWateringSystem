@@ -1,6 +1,9 @@
 import AWS from 'aws-sdk'
 
+import mcache from 'memory-cache'
 
+var date=new Date()
+//AWS Credentials config
 AWS.config.update({
     "region":process.env.AWS_DEFAULT_REGION,
    "accessKeyId":process.env.AWS_ACCESS_KEY_ID,
@@ -15,7 +18,25 @@ app.use(urlencoded({extended:true}))
 app.use(json())
 app.use(cors())
 const port=5000
-
+var cache = (duration) => {
+    return (req, res, next) => {
+      let key = '__express__' + req.originalUrl || req.url
+      let cachedBody = mcache.get(key)
+      if (cachedBody) {
+        res.send(cachedBody)
+        return
+      } else {
+        res.sendResponse = res.send
+        res.send = (body) => {
+          mcache.put(key, body, duration * 1000);
+          console.log("Cache Updated",date.toUTCString())
+          res.sendResponse(body)
+        }
+        next()
+      }
+    }
+  }
+  
 
 
 app.get('/data',async(req,res)=>{
@@ -27,10 +48,34 @@ app.get('/data',async(req,res)=>{
     }
   dynamoCLient.get(params,(err,data)=>{
     if(err){
-        console.log("error at app.get")
+        console.log("error at app.get",err)
     }
     else{
        res.json(data) 
+    }
+   })
+
+})
+app.get('/history/:time',cache(600),async(req,res)=>{
+    const params={
+        TableName:'history',
+        
+        FilterExpression: "#ts>:ts",
+        ExpressionAttributeNames:{
+            "#ts":"time"
+        },
+        ExpressionAttributeValues:{
+            ":ts":Math.floor(Date.now()/1000)-(req.params.time*60*60)
+        } 
+    }
+    
+  dynamoCLient.scan(params,(err,data)=>{
+    if(err){
+        console.log("error at app.get",err)
+    }
+    else{
+        
+       res.json(data)
     }
    })
 
@@ -105,6 +150,5 @@ app.post('/sensors',async(req,res)=>{
     res.send("OK")
     res.end()
 })
-console.log("hh")
 app.listen(port)
 
