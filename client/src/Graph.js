@@ -44,7 +44,7 @@ return formattedTime
 
      }
     
-     componentDidUpdate() {
+     componentDidMount() {
          console.log("Fetching data...")
          fetch('https://3emvmdwffh.us-east-2.awsapprunner.com/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
              data.Items.sort(( a, b )=> {
@@ -83,8 +83,8 @@ return formattedTime
             <button onClick={()=>{this.setState({dataKey:"temp"})}}>Temperature </button>
             <button onClick={()=>{this.setState({dataKey:"soil_moist"})}}>Soil Moisture </button> 
             <button onClick={()=>{this.setState({dataKey:"humid"})}}>Humidity </button>
- 
-            <LineChart width={1200} height={300} data={this.state.dataArray} >
+            
+            <LineChart width="80%" height={300} data={this.state.dataArray} >
          
             <XAxis dataKey="time" tickFormatter={this.formatXAxis} padding={{ left: 30, right: 30 }}/>
             <YAxis dataKey={this.state.dataKey} interval="preserveEnd" />
@@ -92,6 +92,7 @@ return formattedTime
             <Tooltip />
             
             </LineChart>
+            
            
             
             </div> 
