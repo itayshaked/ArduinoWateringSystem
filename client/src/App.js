@@ -16,13 +16,13 @@ class App extends React.Component{
     else return "Yes"
   }
   componentDidMount(){
-    fetch("http://localhost:5000/data")
+    fetch("https://3emvmdwffh.us-east-2.awsapprunner.com/data")
       .then((res) => res.json())
       .then((data) => this.setState(data.Item));
   }
 
   componentDidUpdate(){
-    fetch("http://localhost:5000/data")
+    fetch("https://3emvmdwffh.us-east-2.awsapprunner.com/data")
       .then((res) => res.json())
       .then((data) => this.setState(data.Item));
   }
