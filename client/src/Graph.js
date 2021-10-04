@@ -8,7 +8,7 @@ class Graph  extends React.Component {
         this.state ={dataArray:[],dataKey:"temp",timeToRetreive:"24"}
         this.formatXAxis=this.formatXAxis.bind(this)
         console.log("Fetching data...")
-        fetch('http://localhost:5000/history/'+this.state.timeToRetreive).then(res=>res.json()).then(data=>{
+        fetch('https://3emvmdwffh.us-east-2.awsapprunner.com/history/'+this.state.timeToRetreive).then(res=>res.json()).then(data=>{
             
             data.Items.forEach(element => {
                 this.state.dataArray.push(element)   
@@ -46,7 +46,7 @@ return formattedTime
     
      componentDidUpdate() {
          console.log("Fetching data...")
-         fetch('http://localhost:5000/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
+         fetch('https://3emvmdwffh.us-east-2.awsapprunner.com/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
              data.Items.sort(( a, b )=> {
                 if ( a.time < b.time ){
                   return -1;
