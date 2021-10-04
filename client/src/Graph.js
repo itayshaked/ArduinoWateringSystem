@@ -44,7 +44,7 @@ return formattedTime
 
      }
     
-     useEffect() {
+     componentDidUpdate() {
          console.log("Fetching data...")
          fetch('https://3emvmdwffh.us-east-2.awsapprunner.com/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
              data.Items.sort(( a, b )=> {
@@ -68,7 +68,7 @@ return formattedTime
     render() { 
         
         return ( 
-            <div>
+            <div style={{ width: 500, height: 300 }}>
                 Data Settings:
                 <br/>
                 Time to retreive data:
@@ -83,7 +83,7 @@ return formattedTime
             <button onClick={()=>{this.setState({dataKey:"temp"})}}>Temperature </button>
             <button onClick={()=>{this.setState({dataKey:"soil_moist"})}}>Soil Moisture </button> 
             <button onClick={()=>{this.setState({dataKey:"humid"})}}>Humidity </button>
-            
+            <ResponsiveContainer>
             <LineChart width={600} height={300} data={this.state.dataArray} >
          
             <XAxis dataKey="time" tickFormatter={this.formatXAxis} padding={{ left: 30, right: 30 }}/>
@@ -92,6 +92,7 @@ return formattedTime
             <Tooltip />
             
             </LineChart>
+            </ResponsiveContainer>
             
            
             
