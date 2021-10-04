@@ -44,7 +44,7 @@ return formattedTime
 
      }
     
-     componentDidMount() {
+     useEffect() {
          console.log("Fetching data...")
          fetch('https://3emvmdwffh.us-east-2.awsapprunner.com/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
              data.Items.sort(( a, b )=> {
