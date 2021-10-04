@@ -84,7 +84,7 @@ return formattedTime
             <button onClick={()=>{this.setState({dataKey:"soil_moist"})}}>Soil Moisture </button> 
             <button onClick={()=>{this.setState({dataKey:"humid"})}}>Humidity </button>
             
-            <LineChart width="80%" height={300} data={this.state.dataArray} >
+            <LineChart width={600} height={300} data={this.state.dataArray} >
          
             <XAxis dataKey="time" tickFormatter={this.formatXAxis} padding={{ left: 30, right: 30 }}/>
             <YAxis dataKey={this.state.dataKey} interval="preserveEnd" />
