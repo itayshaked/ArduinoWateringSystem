@@ -7,6 +7,7 @@ import Graph from './Graph';
 
 class App extends React.Component{
   constructor(props){
+    const url='http://localhost:5000'
     super(props)
     this.state={}
     this.rainToday=this.rainToday.bind(this)
@@ -16,13 +17,13 @@ class App extends React.Component{
     else return "Yes"
   }
   componentDidMount(){
-    fetch("https://3emvmdwffh.us-east-2.awsapprunner.com/data")
+    fetch(url+"/data")
       .then((res) => res.json())
       .then((data) => this.setState(data.Item));
   }
 
   componentDidUpdate(){
-    fetch("https://3emvmdwffh.us-east-2.awsapprunner.com/data")
+    fetch(url+"/data")
       .then((res) => res.json())
       .then((data) => this.setState(data.Item));
   }
