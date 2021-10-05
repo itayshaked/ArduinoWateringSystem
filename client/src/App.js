@@ -7,9 +7,9 @@ import Graph from './Graph';
 
 class App extends React.Component{
   constructor(props){
-    const url='http://localhost:5000'
+    
     super(props)
-    this.state={}
+    this.state={url:'http://localhost:5000'}
     this.rainToday=this.rainToday.bind(this)
   }
   rainToday(water_sensor){
@@ -17,13 +17,13 @@ class App extends React.Component{
     else return "Yes"
   }
   componentDidMount(){
-    fetch(url+"/data")
+    fetch(this.state.url+"/data")
       .then((res) => res.json())
       .then((data) => this.setState(data.Item));
   }
 
   componentDidUpdate(){
-    fetch(url+"/data")
+    fetch(this.state.url+"/data")
       .then((res) => res.json())
       .then((data) => this.setState(data.Item));
   }
@@ -31,7 +31,7 @@ class App extends React.Component{
 
   render(){
   return (
-    <div>
+    <div style={{width:'100%'}}>
       <p>Temperature: {!this.state ? "Loading..." : this.state.temp+"C"}</p>
       <p>Humidity: {!this.state ? "Loading..." : this.state.humid+"%"}</p>
       <p>Soil Moisture: {!this.state ? "Loading..." : this.state.soil_moist}</p>

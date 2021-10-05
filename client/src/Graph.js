@@ -6,27 +6,27 @@ class Graph  extends React.Component {
     
     constructor(props) {
         super(props);
-        const url='http://localhost:5000'
-        this.state ={dataArray:[],dataKey:"temp",timeToRetreive:"24"}
+        
+        this.state ={dataArray:[],dataKey:"temp",timeToRetreive:"24",url:'http://localhost:5000'}
         this.formatXAxis=this.formatXAxis.bind(this)
+ 
         console.log("Fetching data...")
-        fetch(url+'/history/'+this.state.timeToRetreive).then(res=>res.json()).then(data=>{
-            
-            data.Items.forEach(element => {
-                this.state.dataArray.push(element)   
+        fetch(this.state.url+'/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
+            data.Items.sort(( a, b )=> {
+               if ( a.time < b.time ){
+                 return -1;
+               }
+               if ( a.time > b.time ){
+                 return 1;
+               }
+               return 0;
+             })
+            this.setState({
+                dataArray:data.Items 
             })
-            this.state.dataArray.sort(( a, b )=> {
-                if ( a.time < b.time ){
-                  return -1;
-                }
-                if ( a.time > b.time ){
-                  return 1;
-                }
-                return 0;
-              })
             console.log("Data Fetched : ", this.state.dataArray)
            })
-           
+         
     }
     formatXAxis = (tickItem) => { 
       let unix_timestamp = tickItem
@@ -45,32 +45,31 @@ var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 return formattedTime
 
      }
-    
-     componentDidUpdate() {
-         console.log("Fetching data...")
-         fetch(url+'/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
-             data.Items.sort(( a, b )=> {
-                if ( a.time < b.time ){
-                  return -1;
-                }
-                if ( a.time > b.time ){
-                  return 1;
-                }
-                return 0;
-              })
-             this.setState({
-                 dataArray:data.Items 
-             })
-             console.log("Data Fetched : ", this.state.dataArray)
-            })
-   
-    }
-     
-   
+     componentDidUpdate(){
+ 
+         setTimeout(()=>{  
+            console.log("Fetching data...")
+            fetch(this.state.url+'/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
+                data.Items.sort(( a, b )=> {
+                    if ( a.time < b.time ){
+                      return -1;
+                    }
+                    if ( a.time > b.time ){
+                      return 1;
+                    }
+                    return 0;
+                  })
+                this.setState({
+                    dataArray:data.Items 
+                })
+                console.log("Data Fetched : ", this.state.dataArray)
+                })},2000)
+     }
+
     render() { 
         
         return ( 
-            <div style={{ width: 500, height: 300 }}>
+            <div style={{width:"100%",height:150}} >
                 Data Settings:
                 <br/>
                 Time to retreive data:
@@ -85,16 +84,17 @@ return formattedTime
             <button onClick={()=>{this.setState({dataKey:"temp"})}}>Temperature </button>
             <button onClick={()=>{this.setState({dataKey:"soil_moist"})}}>Soil Moisture </button> 
             <button onClick={()=>{this.setState({dataKey:"humid"})}}>Humidity </button>
-            <ResponsiveContainer>
-            <LineChart width={600} height={300} data={this.state.dataArray} >
+            <ResponsiveContainer height='100%' width='100%'>
+            <LineChart data={this.state.dataArray}  >
          
-            <XAxis dataKey="time" tickFormatter={this.formatXAxis} padding={{ left: 30, right: 30 }}/>
+            <XAxis dataKey="time" tickFormatter={this.formatXAxis}/>
             <YAxis dataKey={this.state.dataKey} interval="preserveEnd" />
             <Line type="monotone" dataKey={this.state.dataKey} stroke="#8884d8"/>
             <Tooltip />
             
             </LineChart>
             </ResponsiveContainer>
+          
             
            
             
