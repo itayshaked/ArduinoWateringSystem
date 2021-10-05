@@ -9,7 +9,7 @@ class App extends React.Component{
   constructor(props){
     
     super(props)
-    this.state={url:'http://localhost:5000'}
+    this.state={url:'https://3emvmdwffh.us-east-2.awsapprunner.com'}
     this.rainToday=this.rainToday.bind(this)
   }
   rainToday(water_sensor){

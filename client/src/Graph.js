@@ -7,7 +7,7 @@ class Graph  extends React.Component {
     constructor(props) {
         super(props);
         
-        this.state ={dataArray:[],dataKey:"temp",timeToRetreive:"24",url:'http://localhost:5000'}
+        this.state ={dataArray:[],dataKey:"temp",timeToRetreive:"24",url:'https://3emvmdwffh.us-east-2.awsapprunner.com'}
         this.formatXAxis=this.formatXAxis.bind(this)
  
         console.log("Fetching data...")
