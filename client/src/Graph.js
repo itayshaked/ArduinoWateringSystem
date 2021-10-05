@@ -2,13 +2,15 @@ import { LineChart, Line,CartesianGrid, XAxis, YAxis, Tooltip, Legend, Responsiv
 import React from 'react';
 
 class Graph  extends React.Component {
+  
     
     constructor(props) {
         super(props);
+        const url='http://localhost:5000'
         this.state ={dataArray:[],dataKey:"temp",timeToRetreive:"24"}
         this.formatXAxis=this.formatXAxis.bind(this)
         console.log("Fetching data...")
-        fetch('https://3emvmdwffh.us-east-2.awsapprunner.com/history/'+this.state.timeToRetreive).then(res=>res.json()).then(data=>{
+        fetch(url+'/history/'+this.state.timeToRetreive).then(res=>res.json()).then(data=>{
             
             data.Items.forEach(element => {
                 this.state.dataArray.push(element)   
@@ -46,7 +48,7 @@ return formattedTime
     
      componentDidUpdate() {
          console.log("Fetching data...")
-         fetch('https://3emvmdwffh.us-east-2.awsapprunner.com/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
+         fetch(url+'/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
              data.Items.sort(( a, b )=> {
                 if ( a.time < b.time ){
                   return -1;
