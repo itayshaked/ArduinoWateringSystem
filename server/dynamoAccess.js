@@ -1,7 +1,7 @@
 import AWS from 'aws-sdk'
-import dotenv from 'dotenv'
+
 import mcache from 'memory-cache'
-dotenv.config()
+
 var date=new Date()
 //AWS Credentials config
 AWS.config.update({
