@@ -51,7 +51,6 @@ app.get('/data',async(req,res)=>{
         console.log("error at app.get",err)
     }
     else{
-
        res.json(data) 
     }
    })
@@ -66,7 +65,7 @@ app.get('/history/:time',cache(600),async(req,res)=>{
             "#ts":"time"
         },
         ExpressionAttributeValues:{
-            ":ts":Math.floor(Date.now()/1000)-(req.params.time*60*60)
+            ":ts":Math.floor(date.now()/1000)-(req.params.time*60*60)
         } 
     }
     
@@ -112,7 +111,7 @@ app.post('/sensors',async(req,res)=>{
         Item:{
             "time":parseInt(req.body.time)
             ,
-            "timestamp":parseInt(Math.floor(Date.now()))
+            "timestamp":parseInt(Math.floor(date.now()/1000))
             ,
 
             "temp":parseInt(req.body.temp)
@@ -142,7 +141,7 @@ app.post('/sensors',async(req,res)=>{
             ":UV":req.body.UV,
             ":water_sensor":req.body.water_sensor,
             ":humid":req.body.humid,
-            ":timestamp":Math.floor(Date.now())
+            ":timestamp":Math.floor(date.now()/1000)
         },
         ExpressionAttributeNames:{
             "#temp":"temp",
@@ -150,7 +149,7 @@ app.post('/sensors',async(req,res)=>{
             "#soil_moist":"soil_moist",
             "#water_sensor":"water_sensor",
             "#humid":"humid",
-            "#timetsamp":"timestamp"
+            "#timestamp":"timestamp"
         }
     }
      await dynamoCLient.update(updatepar,(err,data)=>{
