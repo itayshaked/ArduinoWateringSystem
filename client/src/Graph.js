@@ -1,6 +1,8 @@
 import { LineChart, Line,CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer  } from 'recharts';
 import React from 'react';
 import Layout from './Layout';
+import './Graph.css'
+
 
 class Graph extends React.Component {
     constructor(props) {
@@ -25,15 +27,17 @@ return formattedTime
      }
     render() { 
         return ( 
-            <div style={{width:'100%',height:300}}>
-            <ResponsiveContainer height='100%' width='100%'>
+            <div className='graph'>
+            <ResponsiveContainer >
             <LineChart data={this.props.dataArray} >
-            <XAxis dataKey="time" tickFormatter={this.formatXAxis}/>
-            <YAxis dataKey={this.props.dataKey} interval="preserveEnd" />
-            <Line type="monotone" dataKey={this.props.dataKey} stroke="#8884d8"/>
+            <XAxis  dataKey="time" tickFormatter={this.formatXAxis}/>
+            <YAxis dataKey={this.props.dataKey}  />
+            <CartesianGrid strokeDasharray="3 3" />
+            <Line dot={false} type="monotone" dataKey={this.props.dataKey} stroke="#8884d8"/>
             <Tooltip />
             </LineChart>
             </ResponsiveContainer>
+            
             </div>
 
         );

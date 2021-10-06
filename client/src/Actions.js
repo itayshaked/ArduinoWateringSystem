@@ -3,18 +3,24 @@ import React, { Component } from 'react';
 class Actions extends Component {
     constructor(props) {
         super(props);
-        this.state = {  }
+        this.state = {timeToRetreive:"24"}
     }
     render() { 
         return (
             <div>
             <p>Data Settings:
             <br/>
-            Time to retreive data:
+            Time to retreive data(Hours):
             <br/>
-            <button onClick={()=>{this.props.updateGraphData("1")}}>1 Hour </button> 
-            <button onClick={()=>{this.props.updateGraphData("12")}}>12 Hours </button> 
-            <button onClick={()=>{this.props.updateGraphData("24")}}>24 Hours </button>
+            <form onSubmit={(event)=>{
+                this.props.updateGraphData(this.state.timeToRetreive)
+                event.preventDefault()
+                }}>
+            <input type="text" value={this.state.timeToRetreive} onChange={(event)=>{this.setState({timeToRetreive:event.target.value})}}/>
+            <input type="submit"/>
+            </form>
+                   
+            
             <br/>
             Data to retreive:
             <br/>
