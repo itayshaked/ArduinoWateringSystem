@@ -65,7 +65,7 @@ app.get('/history/:time',cache(600),async(req,res)=>{
             "#ts":"time"
         },
         ExpressionAttributeValues:{
-            ":ts":Math.floor(date.now()/1000)-(req.params.time*60*60)
+            ":ts":Math.floor(Date.now()/1000)-(req.params.time*60*60)
         } 
     }
     
@@ -111,7 +111,7 @@ app.post('/sensors',async(req,res)=>{
         Item:{
             "time":parseInt(req.body.time)
             ,
-            "timestamp":parseInt(Date.now())
+            "timestamp":parseInt(req.body.time)
             ,
 
             "temp":parseInt(req.body.temp)
@@ -141,7 +141,7 @@ app.post('/sensors',async(req,res)=>{
             ":UV":req.body.UV,
             ":water_sensor":req.body.water_sensor,
             ":humid":req.body.humid,
-            ":timestamp":Date.now()
+            ":timestamp":req.body.timestamp
         },
         ExpressionAttributeNames:{
             "#temp":"temp",
