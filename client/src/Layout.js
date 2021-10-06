@@ -40,6 +40,9 @@ class Layout extends React.Component{
     this.updateLiveData()
     this.updateGraphData("24")
   }
+  componentDidUpdate(){
+    this.updateLiveData()
+  }
 
   render(){
   return (
