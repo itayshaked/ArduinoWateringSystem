@@ -51,7 +51,7 @@ app.get('/data',async(req,res)=>{
         console.log("error at app.get",err)
     }
     else{
-        data.Item={...data.Item,timestamp:date.getTime()}
+
        res.json(data) 
     }
    })
