@@ -111,7 +111,7 @@ app.post('/sensors',async(req,res)=>{
         Item:{
             "time":parseInt(req.body.time)
             ,
-            "timestamp":parseInt(Math.floor(date.now()/1000))
+            "timestamp":parseInt(Date.now())
             ,
 
             "temp":parseInt(req.body.temp)
@@ -141,7 +141,7 @@ app.post('/sensors',async(req,res)=>{
             ":UV":req.body.UV,
             ":water_sensor":req.body.water_sensor,
             ":humid":req.body.humid,
-            ":timestamp":Math.floor(date.now()/1000)
+            ":timestamp":Date.now()
         },
         ExpressionAttributeNames:{
             "#temp":"temp",
