@@ -1,8 +1,8 @@
 import AWS from 'aws-sdk'
 
 import mcache from 'memory-cache'
+const date=new Date()
 
-var date=new Date()
 //AWS Credentials config
 AWS.config.update({
     "region":process.env.AWS_DEFAULT_REGION,
@@ -51,6 +51,7 @@ app.get('/data',async(req,res)=>{
         console.log("error at app.get",err)
     }
     else{
+        data.Item={...data.Item,timestamp:date.getTime()}
        res.json(data) 
     }
    })
@@ -73,9 +74,17 @@ app.get('/history/:time',cache(600),async(req,res)=>{
     if(err){
         console.log("error at app.get",err)
     }
-    else{
-        
-       res.json(data)
+    else{ 
+        data.Items.sort(( a, b )=> {
+            if ( a.time < b.time ){
+              return -1;
+            }
+            if ( a.time > b.time ){
+              return 1;
+            }
+            return 0;
+          })
+          res.json(data)
     }
    })
 
@@ -126,20 +135,22 @@ app.post('/sensors',async(req,res)=>{
         Key:{
             name:"plant",
         },
-        UpdateExpression:"set #temp=:temp,#UV=:UV,#soil_moist=:soil_moist,#water_sensor=:water_sensor,#humid=:humid",
+        UpdateExpression:"set #temp=:temp,#UV=:UV,#soil_moist=:soil_moist,#water_sensor=:water_sensor,#humid=:humid,#timestamp=:timestamp",
         ExpressionAttributeValues:{
             ":temp":req.body.temp,
             ":soil_moist":req.body.soil_moist,
             ":UV":req.body.UV,
             ":water_sensor":req.body.water_sensor,
-            ":humid":req.body.humid
+            ":humid":req.body.humid,
+            ":timestamp":req.body.timestamp
         },
         ExpressionAttributeNames:{
             "#temp":"temp",
             "#UV":"UV",
             "#soil_moist":"soil_moist",
             "#water_sensor":"water_sensor",
-            "#humid":"humid"
+            "#humid":"humid",
+            "#timetsamp":"timestamp"
         }
     }
      await dynamoCLient.update(updatepar,(err,data)=>{

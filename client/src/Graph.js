@@ -1,32 +1,11 @@
 import { LineChart, Line,CartesianGrid, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer  } from 'recharts';
 import React from 'react';
+import Layout from './Layout';
 
-class Graph  extends React.Component {
-  
-    
+class Graph extends React.Component {
     constructor(props) {
         super(props);
-        
-        this.state ={dataArray:[],dataKey:"temp",timeToRetreive:"24",url:'https://3emvmdwffh.us-east-2.awsapprunner.com'}
-        this.formatXAxis=this.formatXAxis.bind(this)
- 
-        console.log("Fetching data...")
-        fetch(this.state.url+'/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
-            data.Items.sort(( a, b )=> {
-               if ( a.time < b.time ){
-                 return -1;
-               }
-               if ( a.time > b.time ){
-                 return 1;
-               }
-               return 0;
-             })
-            this.setState({
-                dataArray:data.Items 
-            })
-            console.log("Data Fetched : ", this.state.dataArray)
-           })
-         
+        this.formatXAxis=this.formatXAxis.bind(this) 
     }
     formatXAxis = (tickItem) => { 
       let unix_timestamp = tickItem
@@ -39,66 +18,23 @@ var hours = date.getHours();
 var minutes = "0" + date.getMinutes();
 // Seconds part from the timestamp
 var seconds = "0" + date.getSeconds();
-
 // Will display time in 10:30:23 format
 var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 return formattedTime
 
      }
-     componentDidUpdate(){
- 
-         setTimeout(()=>{  
-            console.log("Fetching data...")
-            fetch(this.state.url+'/history/'+this.state.timeToRetreive).then(res=>res.json()).then((data)=>{
-                data.Items.sort(( a, b )=> {
-                    if ( a.time < b.time ){
-                      return -1;
-                    }
-                    if ( a.time > b.time ){
-                      return 1;
-                    }
-                    return 0;
-                  })
-                this.setState({
-                    dataArray:data.Items 
-                })
-                console.log("Data Fetched : ", this.state.dataArray)
-                })},2000)
-     }
-
     render() { 
-        
         return ( 
-            <div style={{width:"100%",height:150}} >
-                Data Settings:
-                <br/>
-                Time to retreive data:
-                <br/>
-            <button onClick={()=>{this.setState({timeToRetreive:"1"})}}>1 Hour </button> 
-            <button onClick={()=>{this.setState({timeToRetreive:"12"})}}>12 Hours </button> 
-            <button onClick={()=>{this.setState({timeToRetreive:"24"})}}>24 Hours </button>
-            <br/>
-            Data to retreive:
-            <br/>
-            <button onClick={()=>{this.setState({dataKey:"UV"})}}>UV </button>     
-            <button onClick={()=>{this.setState({dataKey:"temp"})}}>Temperature </button>
-            <button onClick={()=>{this.setState({dataKey:"soil_moist"})}}>Soil Moisture </button> 
-            <button onClick={()=>{this.setState({dataKey:"humid"})}}>Humidity </button>
+            <div style={{width:'100%',height:300}}>
             <ResponsiveContainer height='100%' width='100%'>
-            <LineChart data={this.state.dataArray}  >
-         
+            <LineChart data={this.props.dataArray} >
             <XAxis dataKey="time" tickFormatter={this.formatXAxis}/>
-            <YAxis dataKey={this.state.dataKey} interval="preserveEnd" />
-            <Line type="monotone" dataKey={this.state.dataKey} stroke="#8884d8"/>
+            <YAxis dataKey={this.props.dataKey} interval="preserveEnd" />
+            <Line type="monotone" dataKey={this.props.dataKey} stroke="#8884d8"/>
             <Tooltip />
-            
             </LineChart>
             </ResponsiveContainer>
-          
-            
-           
-            
-            </div> 
+            </div>
 
         );
     }
