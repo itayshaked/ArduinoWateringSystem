@@ -37,6 +37,7 @@ class Layout extends React.Component{
     }  
   
   componentDidMount(){
+    this.updateLiveData()
     setInterval(()=>{this.updateLiveData()},10000)
     this.updateGraphData("24")
   }
