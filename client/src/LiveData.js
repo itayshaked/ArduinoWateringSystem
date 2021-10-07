@@ -1,4 +1,5 @@
  import React, { Component } from 'react';
+ import './LiveData.css'
  
  export default class liveData  extends Component {
     constructor(props) {
@@ -28,13 +29,14 @@
       }
     render() { 
         return (  
-            <div style={{width:'100%'}}>
-            <p>Temperature: {!this.props.liveData ? "Loading..." : this.props.liveData.temp+"C"}</p>
-            <p>Humidity: {!this.props.liveData ? "Loading..." : this.props.liveData.humid+"%"}</p>
-            <p>Soil Moisture: {!this.props.liveData ? "Loading..." : this.props.liveData.soil_moist}</p>
-            <p>Did it rain today? {!this.props.liveData ? "Loading..." :this.rainToday(this.props.liveData.water_sensor)}</p>
-            <p>UV index: {!this.props.liveData ? "Loading..." : this.props.liveData.UV}</p>
-            <p>Time: {!this.props.liveData ? "Loading..." : this.toDate(this.props.liveData.timestamp)}</p>
+            <div className="liveData">
+            <h3 className='header'>Live Data:</h3>
+            <p className='temp'>Temperature: {!this.props.liveData ? "Loading..." : this.props.liveData.temp+"C"}</p>
+            <p className='humid'>Humidity: {!this.props.liveData ? "Loading..." : this.props.liveData.humid+"%"}</p>
+            <p className='soil'>Soil Moisture: {!this.props.liveData ? "Loading..." : this.props.liveData.soil_moist}</p>
+            <p className='rain'>Did it rain today? {!this.props.liveData ? "Loading..." :this.rainToday(this.props.liveData.water_sensor)}</p>
+            <p className='uv'>UV index: {!this.props.liveData ? "Loading..." : this.props.liveData.UV}</p>
+            <p className='time'>Time: {!this.props.liveData ? "Loading..." : this.toDate(this.props.liveData.timestamp)}</p>
             </div>
         );
     }

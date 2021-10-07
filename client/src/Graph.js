@@ -2,6 +2,7 @@ import { LineChart, Line,CartesianGrid, XAxis, YAxis, Tooltip, Legend, Responsiv
 import React from 'react';
 import Layout from './Layout';
 import './Graph.css'
+import { stringify } from 'querystring';
 
 
 class Graph extends React.Component {
@@ -21,24 +22,25 @@ var minutes = "0" + date.getMinutes();
 // Seconds part from the timestamp
 var seconds = "0" + date.getSeconds();
 // Will display time in 10:30:23 format
-var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+var formattedTime =date.getDate()+'/'+(parseInt(date.getMonth())+1)+'/'+ hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
 return formattedTime
 
      }
     render() { 
         return ( 
-            <div className='graph'>
-            <ResponsiveContainer >
-            <LineChart data={this.props.dataArray} >
-            <XAxis  dataKey="time" tickFormatter={this.formatXAxis}/>
-            <YAxis dataKey={this.props.dataKey}  />
-            <CartesianGrid strokeDasharray="3 3" />
-            <Line dot={false} type="monotone" dataKey={this.props.dataKey} stroke="#8884d8"/>
-            <Tooltip />
+            
+            <ResponsiveContainer className='graph'>
+            <LineChart stroke="black" data={this.props.dataArray} >
+            <XAxis  stroke="white"  dataKey="time" tickFormatter={this.formatXAxis}/>
+            <YAxis interval={0} stroke="white" dataKey={this.props.dataKey}  />
+            <CartesianGrid strokeDasharray="1 10 1 10" />
+            <Line dot={false} type="monotone" dataKey={this.props.dataKey} stroke="white"/>
+            <Tooltip contentStyle={{backgroundColor:"#333D79FF", color:"#FAEBEFFF"}} labelFormatter={this.formatXAxis} />
+           
             </LineChart>
             </ResponsiveContainer>
             
-            </div>
+            
 
         );
     }

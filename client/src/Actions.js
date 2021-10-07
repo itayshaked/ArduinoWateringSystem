@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './Actions.css'
 
 class Actions extends Component {
     constructor(props) {
@@ -7,27 +8,27 @@ class Actions extends Component {
     }
     render() { 
         return (
-            <div>
-            <p>Data Settings:
-            <br/>
-            Time to retreive data(Hours):
-            <br/>
-            <form onSubmit={(event)=>{
+            <div className="actions">
+            <h3 >Data Settings:</h3>
+            <p> Time to retreive data(Hours):
+           
+            <form  onSubmit={(event)=>{
                 this.props.updateGraphData(this.state.timeToRetreive)
                 event.preventDefault()
                 }}>
-            <input type="text" value={this.state.timeToRetreive} onChange={(event)=>{this.setState({timeToRetreive:event.target.value})}}/>
-            <input type="submit"/>
-            </form>
-                   
+            <input className="input" type="text" value={this.state.timeToRetreive} onChange={(event)=>{this.setState({timeToRetreive:event.target.value})}}/>
+            <input className="submit" type="submit"/>
             
-            <br/>
-            Data to retreive:
-            <br/>
-            <button onClick={()=>{this.props.updateKeyData("UV")}}>UV </button>     
-            <button onClick={()=>{this.props.updateKeyData("temp")}}>Temperature </button>
-            <button onClick={()=>{this.props.updateKeyData("soil_moist")}}>Soil Moisture </button> 
-            <button onClick={()=>{this.props.updateKeyData("humid")}}>Humidity </button></p>
+            </form>
+            </p>
+           
+            
+            <p className='buttons'>
+            <button className='button' onClick={()=>{this.props.updateKeyData("UV")}}>UV </button>     
+            <button className='button' onClick={()=>{this.props.updateKeyData("temp")}}>Temperature </button>
+            <button className='button' onClick={()=>{this.props.updateKeyData("soil_moist")}}>Soil Moisture </button> 
+            <button className='button' onClick={()=>{this.props.updateKeyData("humid")}}>Humidity </button>
+            </p>
             </div>
           );
     }

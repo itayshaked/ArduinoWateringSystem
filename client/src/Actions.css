@@ -1,0 +1,56 @@
+.actions{
+    margin: 3%;
+    border-radius: 25px;
+    display: block;
+    border: 3px solid white;
+    text-align: center;
+}
+.buttons{
+    display: block;
+}
+.button{
+    
+    margin: 1%;
+    width: 200px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: #FAEBEFFF;
+    border: solid 1px transparent;
+    color: #333D79FF;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+ 
+}
+.input{
+    margin: 1%;
+    width: 200px;
+    height: 36px;
+    background-color: #FAEBEFFF;
+    border: solid 1px transparent;
+    color: #333D79FF;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 300;
+    cursor:text;
+    transition: all .1s ease-in-out;
+}
+.submit{
+    margin: 1%;
+    width: 20%;
+    height: 36px;
+    background-color: #FAEBEFFF;
+    border: solid 1px transparent;
+    color: #333D79FF;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 300;
+    cursor:pointer;
+    transition: all .1s ease-in-out;
+}
+    
+  
+    
+
+
