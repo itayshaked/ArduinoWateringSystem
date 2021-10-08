@@ -1,11 +1,17 @@
 .actions{
+    position: relative;
     margin: 3%;
     border-radius: 25px;
     display: block;
     border: 3px solid white;
     text-align: center;
+    resize: both;
+    overflow:auto;
+    box-sizing: border-box;
+   ;
 }
 .buttons{
+    position: relative;
     display: block;
 }
 .button{
@@ -24,12 +30,12 @@
  
 }
 .input{
-    position: relative;
+    
     border-radius: 18px;
     width:80%;
     background-color: #FAEBEFFF;
     border: solid 1px transparent;
-    
+    height: auto;
     color: #333D79FF;
     text-align: center;
     font-size: 18px;
@@ -38,10 +44,12 @@
     transition: all .1s ease-in-out;
 }
 .submit{
+    
     margin:1%;
     font-size: 18px;
     font-weight: 300;
     width: 80%;
+    height: auto;
     border-radius: 18px;
     background-color: #FAEBEFFF;
     border: solid 1px transparent;
