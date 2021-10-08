@@ -11,8 +11,8 @@
 .button{
     
     margin: 1%;
-    width: 200px;
-    height: 36px;
+    width: 80%;
+    height: 20%;
     border-radius: 18px;
     background-color: #FAEBEFFF;
     border: solid 1px transparent;
@@ -24,11 +24,12 @@
  
 }
 .input{
-    margin: 1%;
-    width: 200px;
-    height: 36px;
+    position: relative;
+    border-radius: 18px;
+    width:80%;
     background-color: #FAEBEFFF;
     border: solid 1px transparent;
+    
     color: #333D79FF;
     text-align: center;
     font-size: 18px;
@@ -37,15 +38,15 @@
     transition: all .1s ease-in-out;
 }
 .submit{
-    margin: 1%;
-    width: 20%;
-    height: 36px;
+    margin:1%;
+    font-size: 18px;
+    font-weight: 300;
+    width: 80%;
+    border-radius: 18px;
     background-color: #FAEBEFFF;
     border: solid 1px transparent;
     color: #333D79FF;
     text-align: center;
-    font-size: 18px;
-    font-weight: 300;
     cursor:pointer;
     transition: all .1s ease-in-out;
 }

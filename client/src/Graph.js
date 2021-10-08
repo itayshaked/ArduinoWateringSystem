@@ -30,7 +30,7 @@ return formattedTime
         return ( 
             
             <ResponsiveContainer className='graph'>
-            <LineChart stroke="black" data={this.props.dataArray} >
+            <LineChart className="chart" stroke="black" data={this.props.dataArray} >
             <XAxis  stroke="white"  dataKey="time" tickFormatter={this.formatXAxis}/>
             <YAxis interval={0} stroke="white" dataKey={this.props.dataKey}  />
             <CartesianGrid strokeDasharray="1 10 1 10" />

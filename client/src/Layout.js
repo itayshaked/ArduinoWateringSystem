@@ -61,7 +61,7 @@ class Layout extends React.Component {
         {this.state.GraphIsLoading ? (
           <div>Loading...</div>
         ) : (
-          <Graph
+          <Graph className="graph"
             dataArray={this.state.dataArray}
             dataKey={this.state.dataKey}
           />
