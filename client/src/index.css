@@ -1,4 +1,7 @@
 
+::-webkit-scrollbar{
+  width: fit-content;
+}
 body {
   position: absolute;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
