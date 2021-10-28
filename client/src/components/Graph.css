@@ -1,10 +1,17 @@
 .graph{
+    position: relative;
     display: block;  
- 
    
+  
+   
+
+ 
 }
 .chart{
 position: relative;
-margin-left:-20px;
+margin-left: -20px;
+
+
+
 
 }

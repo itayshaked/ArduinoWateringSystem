@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 class Graph extends React.Component {
     constructor(props) {
         super(props);
-        this.formatXAxis=this.formatXAxis.bind(this) 
+        this.formatXAxis=this.formatXAxis.bind(this)
     }
     formatXAxis = (tickItem) => { 
       let unix_timestamp = tickItem
@@ -32,9 +32,9 @@ return formattedTime
                 
                 <ResponsiveContainer className='graph'>
                 <LineChart className="chart" stroke="black" data={this.props.data.dataArray} >
-                <XAxis  stroke="white"  dataKey="time" tickFormatter={this.formatXAxis}/>
+               
                 <YAxis interval={0} stroke="white" dataKey={this.props.data.dataKey}  />
-                <CartesianGrid strokeDasharray="1 10 1 10" />
+                
                 <Line dot={false} type="monotone" dataKey={this.props.data.dataKey} stroke="white"/>
                 <Tooltip contentStyle={{backgroundColor:"#333D79FF", color:"#FAEBEFFF"}} labelFormatter={this.formatXAxis} />
             
