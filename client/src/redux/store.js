@@ -23,7 +23,7 @@ const apiHandler=store=>next=>action=>{
     
 }
 
-const initialState={dataKey:"soil_moist",timeToRetreive:"500",dataArray:[],liveData:{},loading:true}
+const initialState={dataKey:"soil_moist",timeToRetreive:"24",dataArray:[],liveData:{},loading:true}
 const dataReducer=(state=initialState,action)=>{
     switch(action.type){
         case 'UPDATE_LIVE_DATA':

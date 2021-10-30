@@ -32,7 +32,7 @@ return formattedTime
                 
                 <ResponsiveContainer className='graph'>
                 <LineChart className="chart" stroke="black" data={this.props.data.dataArray} >
-               
+                <XAxis dataKey="timestamp" tickFormatter={this.formatXAxis}/>
                 <YAxis interval={0} stroke="white" dataKey={this.props.data.dataKey}  />
                 
                 <Line dot={false} type="monotone" dataKey={this.props.data.dataKey} stroke="white"/>
